@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       const accessToken = await AuthService.getAdminAccessToken();
 
       await zitadelService.request<any>({
-        url: '/v2beta/users/{userId}/password',
+        url: '/v2/users/{userId}/password',
         params: {
           userId,
         },

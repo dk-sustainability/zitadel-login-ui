@@ -1,7 +1,7 @@
 /* eslint-disable */
 import type { CallContext, CallOptions } from "nice-grpc-common";
 import _m0 from "protobufjs/minimal";
-import { Details, ListDetails, RequestContext } from "../../object/v2beta/object";
+import { Details, ListDetails, RequestContext } from "../../object/v2/object";
 import { BrandingSettings } from "./branding_settings";
 import { DomainSettings } from "./domain_settings";
 import { LegalAndSupportSettings } from "./legal_settings";
@@ -9,7 +9,7 @@ import { LockoutSettings } from "./lockout_settings";
 import { IdentityProvider, LoginSettings } from "./login_settings";
 import { PasswordComplexitySettings } from "./password_settings";
 
-export const protobufPackage = "zitadel.settings.v2beta";
+export const protobufPackage = "zitadel.settings.v2";
 
 export interface GetLoginSettingsRequest {
   ctx: RequestContext | undefined;
@@ -1179,7 +1179,7 @@ export const GetGeneralSettingsResponse = {
 export type SettingsServiceDefinition = typeof SettingsServiceDefinition;
 export const SettingsServiceDefinition = {
   name: "SettingsService",
-  fullName: "zitadel.settings.v2beta.SettingsService",
+  fullName: "zitadel.settings.v2.SettingsService",
   methods: {
     /** Get basic information over the instance */
     getGeneralSettings: {

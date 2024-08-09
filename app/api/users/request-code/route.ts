@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       }
 
       const result = await zitadelService.request<any>({
-        url: '/v2beta/users/{userId}/password_reset',
+        url: '/v2/users/{userId}/password_reset',
         params: {
           userId: user.id,
         },

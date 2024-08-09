@@ -1,10 +1,10 @@
 /* eslint-disable */
 import type { CallContext, CallOptions } from "nice-grpc-common";
 import _m0 from "protobufjs/minimal";
-import { Details } from "../../object/v2beta/object";
+import { Details } from "../../object/v2/object";
 import { AuthorizationError, AuthRequest } from "./authorization";
 
-export const protobufPackage = "zitadel.oidc.v2beta";
+export const protobufPackage = "zitadel.oidc.v2";
 
 export interface GetAuthRequestRequest {
   authRequestId: string;
@@ -392,7 +392,7 @@ export const CreateCallbackResponse = {
 export type OIDCServiceDefinition = typeof OIDCServiceDefinition;
 export const OIDCServiceDefinition = {
   name: "OIDCService",
-  fullName: "zitadel.oidc.v2beta.OIDCService",
+  fullName: "zitadel.oidc.v2.OIDCService",
   methods: {
     getAuthRequest: {
       name: "GetAuthRequest",

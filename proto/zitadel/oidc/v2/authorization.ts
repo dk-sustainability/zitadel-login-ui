@@ -3,7 +3,7 @@ import _m0 from "protobufjs/minimal";
 import { Duration } from "../../../google/protobuf/duration";
 import { Timestamp } from "../../../google/protobuf/timestamp";
 
-export const protobufPackage = "zitadel.oidc.v2beta";
+export const protobufPackage = "zitadel.oidc.v2";
 
 export enum Prompt {
   PROMPT_UNSPECIFIED = 0,

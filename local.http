@@ -13,7 +13,7 @@ Authorization: Bearer {{TOKEN}}
 }
 
 ###
-POST {{host}}/v2beta/idp_intents
+POST {{host}}/v2/idp_intents
 Authorization: Bearer {{TOKEN}}
 x-zitadel-orgid: 233613364822053113
 

@@ -1,3 +1,5 @@
+
+
 import type { AuthRequest } from '#/types/zitadel';
 
 const projectIdScopePrefix = 'urn:zitadel:iam:org:project:id:';

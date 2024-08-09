@@ -22,7 +22,7 @@ export default async ({ params: { index } }: { params: { index: number } }) => {
 
   const passkeyRegistrationLinkResult =
     await zitadelService.request<CreatePasskeyRegistrationLink>({
-      url: '/v2beta/users/{userId}/passkeys/registration_link',
+      url: '/v2/users/{userId}/passkeys/registration_link',
       method: 'post',
       params: {
         userId,
@@ -39,7 +39,7 @@ export default async ({ params: { index } }: { params: { index: number } }) => {
   console.log('configuration', configuration);
 
   const registerPasskeyResult = await zitadelService.request<RegisterPasskey>({
-    url: '/v2beta/users/{userId}/passkeys',
+    url: '/v2/users/{userId}/passkeys',
     method: 'post',
     params: {
       userId,

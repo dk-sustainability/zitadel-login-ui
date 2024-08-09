@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
 
       const loginSetting = await zitadelService
         .request<GetLoginSettings>({
-          url: '/v2beta/settings/login',
+          url: '/v2/settings/login',
           query: {
             orgId,
           },

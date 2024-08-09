@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-export const protobufPackage = "zitadel.settings.v2beta";
+export const protobufPackage = "zitadel.settings.v2";
 
 export enum ResourceOwnerType {
   RESOURCE_OWNER_TYPE_UNSPECIFIED = 0,

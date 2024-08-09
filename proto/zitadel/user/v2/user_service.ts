@@ -1,8 +1,8 @@
 /* eslint-disable */
 import type { CallContext, CallOptions } from "nice-grpc-common";
 import _m0 from "protobufjs/minimal";
-import { Struct } from "../../../google/protobuf/struct";
-import { Details, ListDetails, Organisation } from "../../object/v2beta/object";
+import { Struct } from "#/proto/google/protobuf/struct";
+import { Details, ListDetails, Organisation } from "../../object/v2/object";
 import {
   PasskeyAuthenticator,
   passkeyAuthenticatorFromJSON,
@@ -17,7 +17,7 @@ import { HashedPassword, Password, ReturnPasswordResetCode, SendPasswordResetLin
 import { ReturnPhoneVerificationCode, SendPhoneVerificationCode, SetHumanPhone } from "./phone";
 import { SetHumanProfile, SetMetadataEntry } from "./user";
 
-export const protobufPackage = "zitadel.user.v2beta";
+export const protobufPackage = "zitadel.user.v2";
 
 export enum AuthenticationMethodType {
   AUTHENTICATION_METHOD_TYPE_UNSPECIFIED = 0,
@@ -3890,7 +3890,7 @@ export const ListAuthenticationMethodTypesResponse = {
 export type UserServiceDefinition = typeof UserServiceDefinition;
 export const UserServiceDefinition = {
   name: "UserService",
-  fullName: "zitadel.user.v2beta.UserService",
+  fullName: "zitadel.user.v2.UserService",
   methods: {
     /** Create a new human user */
     addHumanUser: {

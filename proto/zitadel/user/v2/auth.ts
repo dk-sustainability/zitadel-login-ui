@@ -1,7 +1,7 @@
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "zitadel.user.v2beta";
+export const protobufPackage = "zitadel.user.v2";
 
 export enum PasskeyAuthenticator {
   PASSKEY_AUTHENTICATOR_UNSPECIFIED = 0,

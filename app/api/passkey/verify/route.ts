@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       const accessToken = await AuthService.getAdminAccessToken();
 
       await zitadelService.request<VerifyPasskeyRegistration>({
-        url: '/v2beta/users/{userId}/passkeys/{passkeyId}',
+        url: '/v2/users/{userId}/passkeys/{passkeyId}',
         params: {
           userId,
           passkeyId,

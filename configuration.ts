@@ -4,11 +4,11 @@ import dotenv from 'dotenv';
 import * as z from 'zod';
 
 type Configuration = {
-  appUrl: string;
+  appUrl: string | undefined;
   zitadel: {
-    url: string;
-    userId: string;
-    userToken: string;
+    url: string | undefined;
+    userId: string | undefined;
+    userToken: string | undefined;
   };
   resend: {
     apiKey?: string;

@@ -20,10 +20,10 @@ export default async ({ searchParams }: { searchParams: SearchParams }) => {
     authRequest: authRequestId,
     user: userId,
   } = searchParams;
-
+  console.log('idpIntentId', idpIntentId);
   if (!userId) {
     const accessToken = await AuthService.getAdminAccessToken();
-    const userService = AuthService.createUserService(accessToken);
+    const userService = AuthService.createUserService(accessToken || '');
 
     const information =
       idpIntentId && idpIntentToken
@@ -39,6 +39,7 @@ export default async ({ searchParams }: { searchParams: SearchParams }) => {
       ? jwt.decode(information?.idpInformation?.oauth?.idToken)
       : undefined;
 
+
     const name = information?.idpInformation?.rawInformation?.name;
     const givenName = information?.idpInformation?.rawInformation?.given_name;
     const familyName = information?.idpInformation?.rawInformation?.family_name;
@@ -51,6 +52,20 @@ export default async ({ searchParams }: { searchParams: SearchParams }) => {
       userName: information?.idpInformation?.userName || decodedData?.['email'],
     };
 
+    const existing=await userService.getUserByEmail(idpLink.userName);
+    if(existing){
+      const userId=existing.user.id;
+      //Associate user with idp
+        await userService.addIDPLink(userId,{idpLink});
+      console.log('existing user',existing);
+      return(<LoginExternalSuccess
+          appUrl={configuration.appUrl ||''}
+          idpIntentId={idpIntentId}
+          idpIntentToken={idpIntentToken}
+          authRequestId={authRequestId}
+          userId={userId}
+      />)
+    }
     return (
       <LoginExternalUserNotExisting
         username={username || idpLink.userName}
@@ -65,7 +80,7 @@ export default async ({ searchParams }: { searchParams: SearchParams }) => {
 
   return (
     <LoginExternalSuccess
-      appUrl={configuration.appUrl}
+      appUrl={configuration.appUrl || ''}
       idpIntentId={idpIntentId}
       idpIntentToken={idpIntentToken}
       authRequestId={authRequestId}

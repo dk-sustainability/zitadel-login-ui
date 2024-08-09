@@ -2,11 +2,11 @@
 import type { CallContext, CallOptions } from "nice-grpc-common";
 import _m0 from "protobufjs/minimal";
 import { Struct } from "../../../google/protobuf/struct";
-import { Details, ListDetails, ListQuery } from "../../object/v2beta/object";
+import { Details, ListDetails, ListQuery } from "../../object/v2/object";
 import { Challenges, RequestChallenges } from "./challenge";
 import { SearchQuery, Session } from "./session";
 
-export const protobufPackage = "zitadel.session.v2beta";
+export const protobufPackage = "zitadel.session.v2";
 
 export interface ListSessionsRequest {
   query: ListQuery | undefined;
@@ -1678,7 +1678,7 @@ export const CheckOTP = {
 export type SessionServiceDefinition = typeof SessionServiceDefinition;
 export const SessionServiceDefinition = {
   name: "SessionService",
-  fullName: "zitadel.session.v2beta.SessionService",
+  fullName: "zitadel.session.v2.SessionService",
   methods: {
     /** Search sessions */
     listSessions: {

@@ -86,16 +86,15 @@ export const shouldTriggerAction = (params: {
 function createAuthService(accessToken: string) {
   return {
     changePassword: async (params: ChangePassword['data']) => {
-      const { oldPassword, newPassword } = params;
+      const { newPassword } = params;
 
       return zitadelService.request<ChangePassword>({
-        url: '/auth/v1/users/me/password',
-        method: 'put',
+        url: '/v2/users/{userId}/password',
+        method: 'post',
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
         data: {
-          oldPassword,
           newPassword,
         },
       });
@@ -130,7 +129,7 @@ function createUserService(accessToken: string) {
       }
 
       return zitadelService.request<CreateHumanUser>({
-        url: '/v2beta/users/human',
+        url: '/v2/users/human',
         method: 'post',
         headers,
         data,
@@ -138,12 +137,21 @@ function createUserService(accessToken: string) {
     },
     getUserById: async (userId: string) => {
       return zitadelService.request<UserByID>({
-        url: 'v2beta/users/{userId}',
+        url: 'v2/users/{userId}',
         method: 'get',
         headers,
         params: {
           userId,
         },
+      });
+    },
+    getUserByEmail: async(UserEmail:string)=> {
+      return zitadelService.request<GetUserByLoginName>({
+        url: '/management/v1/global/users/_by_login_name',
+        method: 'get',
+        headers,
+        query: {
+          loginName: UserEmail,}
       });
     },
     startIdentityProviderIntent: (params: {
@@ -157,7 +165,7 @@ function createUserService(accessToken: string) {
       }
 
       return zitadelService.request<StartIdentityProviderIntent>({
-        url: '/v2beta/idp_intents',
+        url: '/v2/idp_intents',
         method: 'post',
         headers,
         data,
@@ -170,7 +178,7 @@ function createUserService(accessToken: string) {
       const { idpIntentId, idpIntentToken } = params;
       return zitadelService.request<RetrieveIdentityProviderIntent>({
         method: 'post',
-        url: '/v2beta/idp_intents/{idpIntentId}',
+        url: '/v2/idp_intents/{idpIntentId}',
         params: {
           idpIntentId,
         },
@@ -185,7 +193,7 @@ function createUserService(accessToken: string) {
 
       return zitadelService.request<AddIDPLink>({
         method: 'post',
-        url: '/v2beta/users/{userId}/links',
+        url: '/v2/users/{userId}/links',
         params: {
           userId,
         },
@@ -206,7 +214,7 @@ function createUserService(accessToken: string) {
         params;
 
       return zitadelService.request<ChangePassword>({
-        url: '/v2beta/users/{userId}/password',
+        url: '/v2/users/{userId}/password',
         params: {
           userId,
         },
@@ -236,7 +244,7 @@ function createSessionService(accessToken: string) {
   return {
     listSessions: async (data: SearchSessions['data']) => {
       return zitadelService.request<SearchSessions>({
-        url: '/v2beta/sessions/search',
+        url: '/v2/sessions/search',
         method: 'post',
         headers,
         data,
@@ -244,7 +252,7 @@ function createSessionService(accessToken: string) {
     },
     createSession: async (data: CreateSession['data']) => {
       return zitadelService.request<CreateSession>({
-        url: '/v2beta/sessions',
+        url: '/v2/sessions',
         method: 'post',
         headers,
         data,
@@ -252,7 +260,7 @@ function createSessionService(accessToken: string) {
     },
     updateSession: async (sessionId: string, data: UpdateSession['data']) => {
       return zitadelService.request<UpdateSession>({
-        url: '/v2beta/sessions/{sessionId}',
+        url: '/v2/sessions/{sessionId}',
         method: 'patch',
         params: {
           sessionId,
@@ -263,7 +271,7 @@ function createSessionService(accessToken: string) {
     },
     getSession: async (data: GetSession['params']) => {
       const result = await zitadelService.request<GetSession>({
-        url: '/v2beta/sessions/{sessionId}',
+        url: '/v2/sessions/{sessionId}',
         method: 'get',
         headers,
         params: {
@@ -275,7 +283,7 @@ function createSessionService(accessToken: string) {
     },
     deleteSession: async (data: DeleteSessionRequest) => {
       return zitadelService.request<DeleteSession>({
-        url: '/v2beta/sessions/{sessionId}',
+        url: '/v2/sessions/{sessionId}',
         method: 'delete',
         headers,
         params: {
@@ -295,7 +303,7 @@ function createOIDCService(accessToken: string) {
   return {
     getAuthRequest: async (data: GetAuthRequest['params']) => {
       return zitadelService.request<GetAuthRequest>({
-        url: '/v2beta/oidc/auth_requests/{authRequestId}',
+        url: '/v2/oidc/auth_requests/{authRequestId}',
         method: 'get',
         headers,
         params: {
@@ -307,7 +315,7 @@ function createOIDCService(accessToken: string) {
       const { authRequestId, ...data } = params;
 
       return zitadelService.request<CreateCallback>({
-        url: '/v2beta/oidc/auth_requests/{authRequestId}',
+        url: '/v2/oidc/auth_requests/{authRequestId}',
         method: 'post',
         headers,
         params: {
@@ -335,7 +343,7 @@ function createSettingService(accessToken: string) {
 
       return zitadelService
         .request<GetLoginSettings>({
-          url: '/v2beta/settings/login',
+          url: '/v2/settings/login',
           query,
           method: 'get',
           headers,
@@ -351,7 +359,7 @@ function createSettingService(accessToken: string) {
 
       return zitadelService
         .request<GetPasswordComplexitySettings>({
-          url: '/v2beta/settings/password/complexity',
+          url: '/v2/settings/password/complexity',
           query,
           method: 'get',
           headers,
@@ -360,7 +368,7 @@ function createSettingService(accessToken: string) {
     },
     getActiveIdentityProviders: async (orgId?: string) => {
       const result = await zitadelService.request<GetActiveIdentityProviders>({
-        url: '/v2beta/settings/login/idps',
+        url: '/v2/settings/login/idps',
         method: 'get',
         query: {
           orgId,

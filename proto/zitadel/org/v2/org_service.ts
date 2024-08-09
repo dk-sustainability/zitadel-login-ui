@@ -1,10 +1,10 @@
 /* eslint-disable */
 import type { CallContext, CallOptions } from "nice-grpc-common";
 import _m0 from "protobufjs/minimal";
-import { Details } from "../../object/v2beta/object";
-import { AddHumanUserRequest } from "../../user/v2beta/user_service";
+import { Details } from "../../object/v2/object";
+import { AddHumanUserRequest } from "../../user/v2/user_service";
 
-export const protobufPackage = "zitadel.org.v2beta";
+export const protobufPackage = "zitadel.org.v2";
 
 export interface AddOrganizationRequest {
   name: string;
@@ -384,7 +384,7 @@ export const AddOrganizationResponse_CreatedAdmin = {
 export type OrganizationServiceDefinition = typeof OrganizationServiceDefinition;
 export const OrganizationServiceDefinition = {
   name: "OrganizationService",
-  fullName: "zitadel.org.v2beta.OrganizationService",
+  fullName: "zitadel.org.v2.OrganizationService",
   methods: {
     /** Create a new organization and grant the user(s) permission to manage it */
     addOrganization: {

@@ -2,7 +2,7 @@
 import _m0 from "protobufjs/minimal";
 import { ResourceOwnerType, resourceOwnerTypeFromJSON, resourceOwnerTypeToJSON } from "./settings";
 
-export const protobufPackage = "zitadel.settings.v2beta";
+export const protobufPackage = "zitadel.settings.v2";
 
 export interface LegalAndSupportSettings {
   tosLink: string;

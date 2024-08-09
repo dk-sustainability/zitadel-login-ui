@@ -3,22 +3,23 @@ export type {
   ListEventsResponse,
 } from '#/proto/zitadel/admin';
 export type { App as Application } from '#/proto/zitadel/app';
+// @ts-ignore
 export type * from '#/proto/zitadel/idp';
 export type {
   ListAppsResponse,
   SetHumanPasswordRequest,
   SetHumanPasswordResponse,
 } from '#/proto/zitadel/management';
-export type { AuthRequest } from '#/proto/zitadel/oidc/v2beta/authorization';
+export type { AuthRequest } from '#/proto/zitadel/oidc/v2/authorization';
 export type {
   CreateCallbackRequest,
   CreateCallbackResponse,
   GetAuthRequestRequest,
   GetAuthRequestResponse,
   OIDCServiceClient,
-} from '#/proto/zitadel/oidc/v2beta/oidc_service';
-export type { Challenges } from '#/proto/zitadel/session/v2beta/challenge';
-export type { Factors, Session } from '#/proto/zitadel/session/v2beta/session';
+} from '#/proto/zitadel/oidc/v2/oidc_service';
+export type { Challenges } from '#/proto/zitadel/session/v2/challenge';
+export type { Factors, Session } from '#/proto/zitadel/session/v2/session';
 export type {
   CreateSessionRequest,
   CreateSessionResponse,
@@ -29,19 +30,19 @@ export type {
   ListSessionsResponse,
   SessionServiceClient,
   SetSessionResponse,
-} from '#/proto/zitadel/session/v2beta/session_service';
+} from '#/proto/zitadel/session/v2/session_service';
 export type {
   BrandingSettings,
   Theme,
-} from '#/proto/zitadel/settings/v2beta/branding_settings';
-export type { LegalAndSupportSettings } from '#/proto/zitadel/settings/v2beta/legal_settings';
-export { IdentityProviderType } from '#/proto/zitadel/settings/v2beta/login_settings';
+} from '#/proto/zitadel/settings/v2/branding_settings';
+export type { LegalAndSupportSettings } from '#/proto/zitadel/settings/v2/legal_settings';
+export { IdentityProviderType } from '#/proto/zitadel/settings/v2/login_settings';
 export type {
   IdentityProvider,
   LoginSettings,
-} from '#/proto/zitadel/settings/v2beta/login_settings';
-export type { PasswordComplexitySettings } from '#/proto/zitadel/settings/v2beta/password_settings';
-export type { ResourceOwnerType } from '#/proto/zitadel/settings/v2beta/settings';
+} from '#/proto/zitadel/settings/v2/login_settings';
+export type { PasswordComplexitySettings } from '#/proto/zitadel/settings/v2/password_settings';
+export type { ResourceOwnerType } from '#/proto/zitadel/settings/v2/settings';
 export type {
   GetActiveIdentityProvidersRequest,
   GetActiveIdentityProvidersResponse,
@@ -51,8 +52,8 @@ export type {
   GetLoginSettingsRequest,
   GetLoginSettingsResponse,
   GetPasswordComplexitySettingsResponse,
-} from '#/proto/zitadel/settings/v2beta/settings_service';
-export type { IDPInformation, IDPLink } from '#/proto/zitadel/user/v2beta/idp';
+} from '#/proto/zitadel/settings/v2/settings_service';
+export type { IDPInformation, IDPLink } from '#/proto/zitadel/user/v2/idp';
 export type {
   AddHumanUserRequest,
   AddHumanUserResponse,
@@ -70,7 +71,7 @@ export type {
   VerifyEmailResponse,
   VerifyPasskeyRegistrationRequest,
   VerifyPasskeyRegistrationResponse,
-} from '#/proto/zitadel/user/v2beta/user_service';
+} from '#/proto/zitadel/user/v2/user_service';
 import { ListEventsRequest, ListEventsResponse } from '#/proto/zitadel/admin';
 import { ListAppsResponse } from '#/proto/zitadel/management';
 import {
@@ -78,7 +79,7 @@ import {
   CreateCallbackResponse,
   GetAuthRequestRequest,
   GetAuthRequestResponse,
-} from '#/proto/zitadel/oidc/v2beta/oidc_service';
+} from '#/proto/zitadel/oidc/v2/oidc_service';
 import { DeepPartial, PasswordComplexityPolicy } from '#/proto/zitadel/policy';
 import {
   CreateSessionRequest,
@@ -90,14 +91,14 @@ import {
   ListSessionsResponse,
   SetSessionRequest,
   SetSessionResponse,
-} from '#/proto/zitadel/session/v2beta/session_service';
-import { LoginSettings } from '#/proto/zitadel/settings/v2beta/login_settings';
+} from '#/proto/zitadel/session/v2/session_service';
+import { LoginSettings } from '#/proto/zitadel/settings/v2/login_settings';
 import type { IdentityProvider } from '#/types/zitadel';
 
 //#region User service
 // https://zitadel.com/docs/apis/resources/user_service/user-service-get-user-by-id
 export type UserByID = {
-  url: 'v2beta/users/{userId}';
+  url: 'v2/users/{userId}';
   method: 'get';
   params: {
     userId: string;
@@ -148,7 +149,7 @@ export type UserByID = {
  * https://zitadel.com/docs/apis/resources/user_service/user-service-add-human-user
  */
 export type CreateHumanUser = {
-  url: '/v2beta/users/human';
+  url: '/v2/users/human';
   method: 'post';
   data: {
     userId?: string;
@@ -194,7 +195,7 @@ export type CreateHumanUser = {
 /** https://zitadel.com/docs/apis/resources/user_service/user-service-start-identity-provider-intent
  */
 export type StartIdentityProviderIntent = {
-  url: '/v2beta/idp_intents';
+  url: '/v2/idp_intents';
   method: 'post';
   data: {
     idpId: string;
@@ -226,7 +227,7 @@ export type StartIdentityProviderIntent = {
 /** https://zitadel.com/docs/apis/resources/user_service/user-service-retrieve-identity-provider-intent
  */
 export type RetrieveIdentityProviderIntent = {
-  url: '/v2beta/idp_intents/{idpIntentId}';
+  url: '/v2/idp_intents/{idpIntentId}';
   method: 'post';
   params: {
     idpIntentId: string;
@@ -262,14 +263,14 @@ export type RetrieveIdentityProviderIntent = {
 
 // https://zitadel.com/docs/apis/resources/user_service/user-service-add-idp-link
 export type AddIDPLink = {
-  url: '/v2beta/users/{userId}/links';
+  url: '/v2/users/{userId}/links';
   method: 'post';
   params: {
     userId: string;
   };
   data: {
     idpLink: {
-      idpId: string;
+      idpId: string | undefined;
       userId: string;
       userName: string;
     };
@@ -280,7 +281,7 @@ export type AddIDPLink = {
  * https://zitadel.com/docs/apis/resources/user_service/user-service-register-passkey
  */
 export type RegisterPasskey = {
-  url: '/v2beta/users/{userId}/passkeys';
+  url: '/v2/users/{userId}/passkeys';
   method: 'post';
   params: {
     userId: string;
@@ -306,7 +307,7 @@ export type RegisterPasskey = {
  * https://zitadel.com/docs/apis/resources/user_service/user-service-create-passkey-registration-link
  */
 export type CreatePasskeyRegistrationLink = {
-  url: '/v2beta/users/{userId}/passkeys/registration_link';
+  url: '/v2/users/{userId}/passkeys/registration_link';
   method: 'post';
   params: {
     userId: string;
@@ -326,7 +327,7 @@ export type CreatePasskeyRegistrationLink = {
  * https://zitadel.com/docs/apis/resources/user_service/user-service-verify-passkey-registration
  */
 export type VerifyPasskeyRegistration = {
-  url: '/v2beta/users/{userId}/passkeys/{passkeyId}';
+  url: '/v2/users/{userId}/passkeys/{passkeyId}';
   method: 'post';
   params: {
     passkeyId: string;
@@ -342,7 +343,7 @@ export type VerifyPasskeyRegistration = {
 /** @see https://zitadel.com/docs/apis/resources/user_service/user-service-set-password#change-password
  */
 export type ChangePassword = {
-  url: '/v2beta/users/{userId}/password';
+  url: '/v2/users/{userId}/password';
   method: 'post';
   data: {
     newPassword: {
@@ -361,7 +362,7 @@ export type ChangePassword = {
 //#region Setting Service
 ///https://zitadel.com/docs/apis/resources/admin/admin-service-get-login-policy
 export type GetLoginSettings = {
-  url: '/v2beta/settings/login';
+  url: '/v2/settings/login';
   method: 'get';
   query: {
     orgId?: string;
@@ -373,7 +374,7 @@ export type GetLoginSettings = {
 
 //https://zitadel.com/docs/apis/resources/settings_service/settings-service-get-login-settings
 export type GetPasswordComplexitySettings = {
-  url: '/v2beta/settings/password/complexity';
+  url: '/v2/settings/password/complexity';
   method: 'get';
   query: {
     orgId?: string;
@@ -386,7 +387,7 @@ export type GetPasswordComplexitySettings = {
 
 // https://zitadel.com/docs/apis/resources/settings_service/settings-service-get-active-identity-providers
 export type GetActiveIdentityProviders = {
-  url: '/v2beta/settings/login/idps';
+  url: '/v2/settings/login/idps';
   method: 'get';
   query: {
     orgId?: string;
@@ -402,7 +403,7 @@ export type GetActiveIdentityProviders = {
  * https://zitadel.com/docs/apis/resources/session_service/session-service-list-sessions
  */
 export type SearchSessions = {
-  url: '/v2beta/sessions/search';
+  url: '/v2/sessions/search';
   method: 'post';
   data: DeepPartial<ListSessionsRequest>;
   result: ListSessionsResponse;
@@ -412,7 +413,7 @@ export type SearchSessions = {
  * https://zitadel.com/docs/apis/resources/session_service/session-service-create-session
  */
 export type CreateSession = {
-  url: '/v2beta/sessions';
+  url: '/v2/sessions';
   method: 'post';
   data: DeepPartial<CreateSessionRequest>;
   result: CreateSessionResponse;
@@ -422,7 +423,7 @@ export type CreateSession = {
  * https://zitadel.com/docs/apis/resources/session_service/session-service-set-session
  */
 export type UpdateSession = {
-  url: '/v2beta/sessions/{sessionId}';
+  url: '/v2/sessions/{sessionId}';
   method: 'patch';
   params: {
     sessionId: string;
@@ -432,7 +433,7 @@ export type UpdateSession = {
 };
 
 export type GetSession = {
-  url: '/v2beta/sessions/{sessionId}';
+  url: '/v2/sessions/{sessionId}';
   method: 'get';
   params: {
     sessionId: string;
@@ -444,7 +445,7 @@ export type GetSession = {
  * https://zitadel.com/docs/apis/resources/session_service/session-service-delete-session
  */
 export type DeleteSession = {
-  url: '/v2beta/sessions/{sessionId}';
+  url: '/v2/sessions/{sessionId}';
   method: 'delete';
   params: {
     sessionId: string;
@@ -454,14 +455,14 @@ export type DeleteSession = {
 };
 
 export type GetAuthRequest = {
-  url: '/v2beta/oidc/auth_requests/{authRequestId}';
+  url: '/v2/oidc/auth_requests/{authRequestId}';
   method: 'get';
   params: GetAuthRequestRequest;
   result: GetAuthRequestResponse;
 };
 
 export type CreateCallback = {
-  url: '/v2beta/oidc/auth_requests/{authRequestId}';
+  url: '/v2/oidc/auth_requests/{authRequestId}';
   method: 'post';
   params: Pick<CreateCallbackRequest, 'authRequestId'>;
   data: Pick<CreateCallbackRequest, 'session'>;
